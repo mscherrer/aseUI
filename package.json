@@ -25,7 +25,8 @@
     "reflect-metadata": "0.1.2",
     "rxjs": "5.0.0-beta.2",
     "zone.js": "0.6.10",
-
+    "ng2-bootstrap": "1.0.13",
+    "ng2-charts": "1.0.3",
     "a2-in-memory-web-api": "^0.1.15"
   },
   "devDependencies": {
