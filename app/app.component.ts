@@ -11,7 +11,7 @@ export class SentimentAnalysis {
 	template:
 	`
 	<h1>{{title}}</h1>
-	<h4>- Enter a new term and run the sentiment analysis<br/> &nbsp;&nbsp;or<br/>- Click to select an already existing one</h4>
+	<h4>- Register a new term and run the sentiment analysis<br/> &nbsp;&nbsp;or<br/>- Click to select an already existing one</h4>
 
 	<input #newTerm placeholder="Enter a new Term" (keyup.enter)="addTerm(newTerm.value)" (focus)="newTerm.value=''"/>
 	<button type="button" (click)="addTerm(newTerm.value)">Run sentiment analysis</button>
