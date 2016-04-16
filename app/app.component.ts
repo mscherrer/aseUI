@@ -1,23 +1,19 @@
 import {Component} from 'angular2/core';
-
-export class SentimentAnalysis {
-	id: number;
-	term: string;
-	sentiment: number;
-}
+import {SentimentAnalysis} from './sentiment-analysis.component';
+import {SentimentAnalysisDetailComponent} from './sentiment-analysis-detail.component';
 
 @Component({
 	selector: 'my-app',
 	template:
 	`
 	<h1>{{title}}</h1>
-	<h4>- Register a new term and run the sentiment analysis<br/> &nbsp;&nbsp;or<br/>- Click to select an already existing one</h4>
+	<h4>- Register a new term and run the sentiment analysis<br/> &nbsp;&nbsp;or<br/>- Click to select an already registered one</h4>
 
 	<input #newTerm placeholder="Enter a new Term" (keyup.enter)="addTerm(newTerm.value)" (focus)="newTerm.value=''"/>
 	<button type="button" (click)="addTerm(newTerm.value)">Run sentiment analysis</button>
 	<br/>
 	<br/>
-	<p>Choose a sentiment analysis from the list below</p>
+	<p>Choose a term from the list below</p>
 
 
     	<ul class="heroes" style="height:25em;overflow:hidden;overflow-y:auto;">
@@ -28,12 +24,10 @@ export class SentimentAnalysis {
 	</li>
 	</ul>
 
-	<h4>Selected Sentiment Analysis</h4>
-	<div *ngIf="selectedAnalysis">
-		<p>Sentiment of @{{selectedAnalysis.term}} is: <b>{{selectedAnalysis.sentiment}}</b></p>
-	</div>
+	<my-sentiment-analysis-detail [analysis]="selectedAnalysis"></my-sentiment-analysis-detail>
         `
 	,
+	directives: [SentimentAnalysisDetailComponent],
     styles:[`
       .selected {
         background-color: #CFD8DC !important;
