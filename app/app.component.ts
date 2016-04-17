@@ -9,8 +9,8 @@ import {SentimentAnalysisDetailComponent} from './sentiment-analysis-detail.comp
 	<h1>{{title}}</h1>
 	<h4>- Register a new term and run the sentiment analysis<br/> &nbsp;&nbsp;or<br/>- Click to select an already registered one</h4>
 
-	<input #newTerm placeholder="Enter a new Term" (keyup.enter)="addTerm(newTerm.value)" (focus)="newTerm.value=''"/>
-	<button type="button" (click)="addTerm(newTerm.value)">Run sentiment analysis</button>
+	<input #newTerm placeholder="Enter a new Term" (keyup.enter)="registerTerm(newTerm.value)" (focus)="newTerm.value=''"/>
+	<button type="button" (click)="registerTerm(newTerm.value)">Register a new term</button>
 	<br/>
 	<br/>
 	<p>Choose a term from the list below</p>
@@ -86,25 +86,20 @@ export class AppComponent {
 	analysis = ANALYSIS;
 	selectedAnalysis: SentimentAnalysis
 
-	onSelect(analysis: SentimentAnalysis) { this.selectedAnalysis = analysis; }
-	addTerm(newTerm: string){
+	onSelect(analysisItem: SentimentAnalysis) { this.selectedAnalysis = analysisItem; }
+	registerTerm(newTerm: string){
 		if(newTerm) {
-			var newSentiment = 1;
-			if(Math.random() < 0.5) {
-				newSentiment = 0;
-			}
-			this.analysis.push({ "id": this.indexCounter, "term": newTerm, "sentiment": newSentiment });
-			this.indexCounter++;
+			setTimeout( () => { this.analysis.push({ "id": this.indexCounter, "term": newTerm, "fromDate": "02.04.2016", "toDate": "18.04.2016", "sentiment": -1 }); this.indexCounter++; }, 1000);
 		}
     	}
 }
 
 var ANALYSIS: SentimentAnalysis[] = [
-	{ "id": 0, "term": "UBS", "sentiment": 0 },
-	{ "id": 1, "term": "Swisscom", "sentiment": 1 },
-	{ "id": 2, "term": "Sunrise", "sentiment": 1 },
-	{ "id": 3, "term": "ABB", "sentiment": 0 },
-	{ "id": 4, "term": "Migros", "sentiment": 1 },
-	{ "id": 5, "term": "Coop", "sentiment": 0 },
-	{ "id": 6, "term": "SBB", "sentiment": 1 }
+	{ "id": 0, "term": "UBS", "fromDate": "02.04.2016", "toDate": "18.04.2016", "sentiment": -1 },
+	{ "id": 1, "term": "Swisscom", "fromDate": "02.04.2016", "toDate": "18.04.2016", "sentiment": -1 },
+	{ "id": 2, "term": "Sunrise", "fromDate": "02.04.2016", "toDate": "18.04.2016", "sentiment": -1 },
+	{ "id": 3, "term": "ABB", "fromDate": "02.04.2016", "toDate": "18.04.2016", "sentiment": -1 },
+	{ "id": 4, "term": "Migros", "fromDate": "02.04.2016", "toDate": "18.04.2016", "sentiment": -1 },
+	{ "id": 5, "term": "Coop", "fromDate": "02.04.2016", "toDate": "18.04.2016", "sentiment": -1 },
+	{ "id": 6, "term": "SBB", "fromDate": "02.04.2016", "toDate": "18.04.2016", "sentiment": -1 }
 ];
