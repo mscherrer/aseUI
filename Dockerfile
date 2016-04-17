@@ -18,4 +18,6 @@ COPY . /quickstart
 RUN chown -R nodejs:nodejs /quickstart
 USER nodejs
 
+EXPOSE 3000
+
 CMD npm start
