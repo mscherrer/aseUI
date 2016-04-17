@@ -1,0 +1,11 @@
+branch-defaults:
+  master:
+    environment: dev-env
+    group_suffix: null
+global:
+  application_name: ase_gui
+  default_ec2_keyname: aws-eb-ase
+  default_platform: Docker 1.9.1
+  default_region: us-east-1
+  profile: eb-cli
+  sc: git
