@@ -15,9 +15,8 @@
     <script src="node_modules/angular2/bundles/router.js"></script>
     <script src="node_modules/ng2-bootstrap/bundles/ng2-bootstrap.min.js"></script>
     <script src="node_modules/ng2-charts/bundles/ng2-charts.min.js"></script>
-    <script src="node_modules/ng2-charts/node_modules/chart.js/Chart.min.js"></script>
-
     <!-- 2. Configure SystemJS -->
+    <style>.chart {display: block; width: 100%;}</style>
     <script>
       System.config({
         packages: {
@@ -34,5 +33,6 @@
   <!-- 3. Display the application -->
   <body>
     <my-app>Loading...</my-app>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
   </body>
 </html>

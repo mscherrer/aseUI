@@ -13,16 +13,6 @@ constructor() {
     console.log('pie demo');
   }
 
-  // events
-  chartClicked(e:any) {
-    console.log(e);
-  }
-
-  chartHovered(e:any) {
-    console.log(e);
-  }
-
-  // Pie
   private pieChartLabels = ['Download Sales', 'In-Store Sales', 'Mail Sales'];
   private pieChartData = [300, 500, 100];
   private pieChartType = 'Pie';
