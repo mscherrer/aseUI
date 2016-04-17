@@ -14,3 +14,8 @@ _temp
 !karma*.js
 !protractor*.js
 !wallaby.js
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
