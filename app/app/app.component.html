@@ -1,0 +1,17 @@
+<nav id="main">
+  <ul class="level-1">
+    <li [class.active]="router.isRouteActive(router.generate(['/Analysis']))">
+      <a [routerLink]="['Analysis']">
+        Analysis
+      </a>
+    </li>
+    <li [class.active]="router.isRouteActive(router.generate(['/Monitoring']))">
+      <a [routerLink]="['Monitoring']">
+        Monitoring
+      </a>
+    </li>
+    <div class="clearfix"></div>
+  </ul>
+</nav>
+
+<router-outlet></router-outlet>
