@@ -1,6 +1,7 @@
-import {Component} from 'angular2/core';
+import {Component, OnInit} from 'angular2/core';
 import {SentimentAnalysis} from './sentiment-analysis.component';
 import {SentimentAnalysisDetailComponent} from './sentiment-analysis-detail.component';
+import {SentimentAnalysisService} from './sentiment-analysis.service';
 
 @Component({
 	selector: 'my-app',
@@ -28,6 +29,7 @@ import {SentimentAnalysisDetailComponent} from './sentiment-analysis-detail.comp
         `
 	,
 	directives: [SentimentAnalysisDetailComponent],
+	providers: [SentimentAnalysisService],
     styles:[`
       .selected {
         background-color: #CFD8DC !important;
@@ -79,12 +81,21 @@ import {SentimentAnalysisDetailComponent} from './sentiment-analysis-detail.comp
     `]
     })
 
-export class AppComponent {
+export class AppComponent implements OnInit {
 	indexCounter = 7;
-	
 	title = 'Sentiment Analysis Demo';
-	analysis = ANALYSIS;
+	analysis: SentimentAnalysis[];
 	selectedAnalysis: SentimentAnalysis
+
+	constructor(private _sentimentAnalysisService: SentimentAnalysisService) {}
+
+	getSentimentAnalysis() {
+		this._sentimentAnalysisService.getSentimentAnalysis().then(analysis => this.analysis = analysis);
+	}
+
+	ngOnInit() {
+		this.getSentimentAnalysis();
+	}
 
 	onSelect(analysisItem: SentimentAnalysis) { this.selectedAnalysis = analysisItem; }
 	registerTerm(newTerm: string){
@@ -93,13 +104,3 @@ export class AppComponent {
 		}
     	}
 }
-
-var ANALYSIS: SentimentAnalysis[] = [
-	{ "id": 0, "term": "UBS", "fromDate": "02.04.2016", "toDate": "18.04.2016", "sentiment": -1 },
-	{ "id": 1, "term": "Swisscom", "fromDate": "02.04.2016", "toDate": "18.04.2016", "sentiment": -1 },
-	{ "id": 2, "term": "Sunrise", "fromDate": "02.04.2016", "toDate": "18.04.2016", "sentiment": -1 },
-	{ "id": 3, "term": "ABB", "fromDate": "02.04.2016", "toDate": "18.04.2016", "sentiment": -1 },
-	{ "id": 4, "term": "Migros", "fromDate": "02.04.2016", "toDate": "18.04.2016", "sentiment": -1 },
-	{ "id": 5, "term": "Coop", "fromDate": "02.04.2016", "toDate": "18.04.2016", "sentiment": -1 },
-	{ "id": 6, "term": "SBB", "fromDate": "02.04.2016", "toDate": "18.04.2016", "sentiment": -1 }
-];
