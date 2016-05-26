@@ -13,10 +13,7 @@ import {DATEPICKER_DIRECTIVES} from 'ng2-bootstrap/ng2-bootstrap';
 
 export class DatePickerComponent {
   public dt:Date = new Date();
-  public minDate:Date = void 0;
   public events:Array<any>;
-  public tomorrow:Date;
-  public afterTomorrow:Date;
   public formats:Array<string> = ['DD-MM-YYYY', 'YYYY/MM/DD', 'DD.MM.YYYY', 'shortDate'];
   public format:string = this.formats[0];
   public dateOptions:any = {
@@ -25,24 +22,19 @@ export class DatePickerComponent {
   };
   private opened:boolean = false;
 
-  public constructor() {
-    (this.tomorrow = new Date()).setDate(this.tomorrow.getDate() + 1);
-    (this.afterTomorrow = new Date()).setDate(this.tomorrow.getDate() + 2);
-    (this.minDate = new Date()).setDate(this.minDate.getDate() - 1000);
-    this.events = [
-      {date: this.tomorrow, status: 'full'},
-      {date: this.afterTomorrow, status: 'partially'}
-    ];
-  }
+  public constructor() {}
+
   public getDate():number {
     return this.dt && this.dt.getTime() || new Date().getTime();
   }
-  public today():void {
-    this.dt = new Date();
+
+  public getYesterdayDate():Date {
+    this.dt.setDate(this.dt.getDate() - 1);
+    return this.dt;
   }
 
-  public d20090824():void {
-    this.dt = moment('2009-08-24', 'YYYY-MM-DD').toDate();
+  public today():void {
+    this.dt = new Date();
   }
 
   // todo: implement custom class cases
