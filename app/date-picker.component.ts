@@ -13,6 +13,7 @@ import {DATEPICKER_DIRECTIVES} from 'ng2-bootstrap/ng2-bootstrap';
 
 export class DatePickerComponent {
   public dt:Date = new Date();
+  public yesterday:Date = new Date();
   public events:Array<any>;
   public formats:Array<string> = ['DD-MM-YYYY', 'YYYY/MM/DD', 'DD.MM.YYYY', 'shortDate'];
   public format:string = this.formats[0];
@@ -22,7 +23,9 @@ export class DatePickerComponent {
   };
   private opened:boolean = false;
 
-  public constructor() {}
+  public constructor() {
+    this.yesterday.setDate(this.dt.getDate() - 1);
+  }
 
   public getDate():number {
     return this.dt && this.dt.getTime() || new Date().getTime();
