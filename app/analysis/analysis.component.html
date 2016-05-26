@@ -4,7 +4,7 @@
 <button type="button" (click)="registerTerm(newTerm.value)" style="width:11.4em;">Register a new term</button>
 <hr align="left" style="width:29.5em"/>
 <h4><b>List of registered terms:</b></h4>
-<ul class="heroes" style="height:25em;overflow:hidden;overflow-y:auto;">
+<ul class="heroes" style="height:20em;overflow:hidden;overflow-y:auto;">
   <li *ngFor="#analysisItem of analysis"
       [class.selected]="analysisItem === selectedAnalysis"
       (click)="onSelect(analysisItem)">

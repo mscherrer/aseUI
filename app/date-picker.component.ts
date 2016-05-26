@@ -1,4 +1,4 @@
-import {Component} from 'angular2/core';
+import {Component, Input} from 'angular2/core';
 import {CORE_DIRECTIVES, FORM_DIRECTIVES} from 'angular2/common';
 
 import {DATEPICKER_DIRECTIVES} from 'ng2-bootstrap/ng2-bootstrap';
@@ -21,7 +21,6 @@ export class DatePickerComponent {
     formatYear: 'YY',
     startingDay: 1
   };
-  private opened:boolean = false;
 
   public constructor() {
     this.pickerFromDate.setDate(this.pickerFromDate.getDate() - 1);
@@ -44,11 +43,17 @@ export class DatePickerComponent {
     return '';
   }
 
-  public disabled(date:Date, mode:string):boolean {
-    return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
+  public hideDatePickers():void {
+    this.fromDateVisible = false;
+    this.toDateVisible = false;
   }
 
-  public open():void {
-    this.opened = !this.opened;
+  public resetFromToDates():void {
+    this.pickerToDate.setDate((new Date()).getDate());
+    this.pickerFromDate.setDate(this.pickerToDate.getDate() - 1);
+  }
+
+  public disabled(date:Date, mode:string):boolean {
+    return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
   }
 }

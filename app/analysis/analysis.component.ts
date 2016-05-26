@@ -42,8 +42,8 @@ export class AnalysisComponent implements OnInit {
         this.analysis.push({
           "id": this.indexCounter,
           "term": newTerm,
-          "fromDate": "02.04.2016",
-          "toDate": "18.04.2016",
+          "fromDateSentiment": new Date(2014, 0, 1),
+          "toDateSentiment": new Date(2014, 0, 1),
           "sentiment": -1
         });
         this.indexCounter++;

@@ -1,7 +1,7 @@
 export class SentimentAnalysis {
 	id: number;
 	term: string;
-	fromDate: string;
-	toDate: string;
+	fromDateSentiment: Date;
+	toDateSentiment: Date;
 	sentiment: number;
 }
