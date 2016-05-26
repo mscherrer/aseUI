@@ -12,13 +12,13 @@
 </style>
 
 <div>
-  <pre class="card card-block card-header">From: <em *ngIf="dt">{{ getDate() | date:'fullDate'}}</em></pre>
-  <h4>Inline</h4>
+  <pre class="card card-block card-header">From: <em *ngIf="pickerFromDate">{{ pickerFromDate | date:'fullDate'}}</em></pre>
   <div style="display:inline-block; min-height:290px;">
-    <datepicker [(ngModel)]="dt" [initDate]="yesterday" [showWeeks]="true"></datepicker>
+    <datepicker [(ngModel)]="pickerFromDate" [initDate]="pickerFromDate" [showWeeks]="true"></datepicker>
   </div>
 
-  <hr />
-  <button type="button" class="btn btn-sm btn-info" (click)="today()">Today</button>
-  <button type="button" class="btn btn-sm btn-danger" (click)="clear()">Clear</button>
+  <pre class="card card-block card-header">To: <em *ngIf="pickerToDate">{{ pickerToDate | date:'fullDate'}}</em></pre>
+  <div style="display:inline-block; min-height:290px;">
+    <datepicker [(ngModel)]="pickerToDate" [initDate]="pickerToDate" [showWeeks]="true"></datepicker>
+  </div>
 </div>
