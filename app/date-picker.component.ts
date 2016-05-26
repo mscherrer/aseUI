@@ -1,7 +1,6 @@
 import {Component} from 'angular2/core';
 import {CORE_DIRECTIVES, FORM_DIRECTIVES} from 'angular2/common';
 
-import * as moment from 'moment';
 import {DATEPICKER_DIRECTIVES} from 'ng2-bootstrap/ng2-bootstrap';
 
 @Component({
@@ -13,6 +12,7 @@ import {DATEPICKER_DIRECTIVES} from 'ng2-bootstrap/ng2-bootstrap';
 export class DatePickerComponent {
   public pickerToDate:Date = new Date();
   public pickerFromDate:Date = new Date();
+  public visible:boolean = false;
   public events:Array<any>;
   public formats:Array<string> = ['DD-MM-YYYY', 'YYYY/MM/DD', 'DD.MM.YYYY', 'shortDate'];
   public format:string = this.formats[0];

@@ -1,13 +1,9 @@
 <h1>{{title}}</h1>
-<h4>- Register a new term and run the sentiment analysis<br/> &nbsp;&nbsp;or<br/>- Click to select an already registered one</h4>
-
-<input #newTerm placeholder="Enter a new Term" (keyup.enter)="registerTerm(newTerm.value)" (focus)="newTerm.value=''"/>
-<button type="button" (click)="registerTerm(newTerm.value)">Register a new term</button>
-<br/>
-<br/>
-<p>Choose a term from the list below</p>
-
-
+<h5>- Register a new term and run the sentiment analysis<br/> &nbsp;&nbsp;or<br/>- Click to select an already registered one</h5>
+<input #newTerm placeholder="Enter a new Term" (keyup.enter)="registerTerm(newTerm.value)" (focus)="newTerm.value=''" style="width:18em;"/>
+<button type="button" (click)="registerTerm(newTerm.value)" style="width:11.4em;">Register a new term</button>
+<hr align="left" style="width:29.5em"/>
+<h4><b>List of registered terms:</b></h4>
 <ul class="heroes" style="height:25em;overflow:hidden;overflow-y:auto;">
   <li *ngFor="#analysisItem of analysis"
       [class.selected]="analysisItem === selectedAnalysis"
@@ -15,7 +11,5 @@
     <span class="badge">{{analysisItem.id}}</span> {{analysisItem.term}}
   </li>
 </ul>
-
-<date-picker-demo></date-picker-demo>
-
+<hr align="left" style="width:29.5em"/>
 <my-sentiment-analysis-detail [analysis]="selectedAnalysis"></my-sentiment-analysis-detail>

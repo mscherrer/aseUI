@@ -1,4 +1,4 @@
-import {Component} from 'angular2/core';
+import {Component, ViewChild} from 'angular2/core';
 import {SentimentAnalysis} from '../sentiment-analysis.component';
 import {SentimentAnalysisService} from '../sentiment-analysis.service';
 import {OnInit} from 'angular2/core';
@@ -8,61 +8,14 @@ import {DatePickerComponent} from '../date-picker.component';
 
 @Component({
   selector: 'analysis',
-  styles: [`
-  .selected {
-  background-color: #CFD8DC !important;
-  color: white;
-  }
-  .heroes {
-    margin: 0 0 2em 0;
-    list-style-type: none;
-    padding: 0;
-    width: 30em;
-  }
-  .heroes li {
-    cursor: pointer;
-    position: relative;
-    left: 0;
-    background-color: #EEE;
-    margin: .5em;
-    padding: .3em 0;
-    height: 1.6em;
-    border-radius: 4px;
-  }
-  .heroes li.selected:hover {
-    background-color: #BBD8DC !important;
-    color: white;
-  }
-  .heroes li:hover {
-    color: #607D8B;
-    background-color: #DDD;
-    left: .1em;
-  }
-  .heroes .text {
-    position: relative;
-    top: -3px;
-  }
-  .heroes .badge {
-    display: inline-block;
-    font-size: small;
-    color: white;
-    padding: 0.8em 0.7em 0 0.7em;
-    background-color: #607D8B;
-    line-height: 1em;
-    position: relative;
-    left: -1px;
-    top: -4px;
-    height: 1.8em;
-    margin-right: .8em;
-    border-radius: 4px 0 0 4px;
-  }`],
+  styleUrls: ['app/css/analysis-component.css'],
   templateUrl: 'app/analysis/analysis.component.html',
-  directives: [SentimentAnalysisDetailComponent, DatePickerComponent],
+  directives: [SentimentAnalysisDetailComponent],
   providers: [SentimentAnalysisService],
 })
 export class AnalysisComponent implements OnInit {
   indexCounter = 7;
-  title = 'Sentiment Analysis Demo';
+  title = 'Sentiment Analysis Tool';
   analysis:SentimentAnalysis[];
   selectedAnalysis:SentimentAnalysis;
 
@@ -82,6 +35,8 @@ export class AnalysisComponent implements OnInit {
   }
 
   registerTerm(newTerm:string) {
+    // POST to register term
+
     if (newTerm) {
       setTimeout(() => {
         this.analysis.push({
