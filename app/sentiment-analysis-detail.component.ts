@@ -1,7 +1,7 @@
 import {Component, Input} from 'angular2/core';
 import {SentimentAnalysis} from './sentiment-analysis.component';
 @Component({
-	selector: 'my-sentiment-analysis-detail',
+	selector: 'my-sentiment-analysis-detail-BLA',
 	template: `
 		<h4>Selected Sentiment Analysis</h4>
 		<div *ngIf="analysis && analysis.sentiment === -1">
