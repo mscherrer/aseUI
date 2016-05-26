@@ -3,6 +3,7 @@ import {SentimentAnalysis} from '../sentiment-analysis.component';
 import {SentimentAnalysisService} from '../sentiment-analysis.service';
 import {OnInit} from 'angular2/core';
 import {SentimentAnalysisDetailComponent} from '../sentiment-analysis-detail.component';
+import {DatePickerComponent} from '../date-picker.component';
 
 
 @Component({
@@ -56,7 +57,7 @@ import {SentimentAnalysisDetailComponent} from '../sentiment-analysis-detail.com
     border-radius: 4px 0 0 4px;
   }`],
   templateUrl: 'app/analysis/analysis.component.html',
-  directives: [SentimentAnalysisDetailComponent],
+  directives: [SentimentAnalysisDetailComponent, DatePickerComponent],
   providers: [SentimentAnalysisService],
 })
 export class AnalysisComponent implements OnInit {
