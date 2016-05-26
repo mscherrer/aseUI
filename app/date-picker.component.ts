@@ -10,9 +10,10 @@ import {DATEPICKER_DIRECTIVES} from 'ng2-bootstrap/ng2-bootstrap';
 })
 
 export class DatePickerComponent {
-  public pickerToDate:Date = new Date();
   public pickerFromDate:Date = new Date();
-  public visible:boolean = false;
+  public pickerToDate:Date = new Date();
+  public fromDateVisible:boolean = false;
+  public toDateVisible:boolean = false;
   public events:Array<any>;
   public formats:Array<string> = ['DD-MM-YYYY', 'YYYY/MM/DD', 'DD.MM.YYYY', 'shortDate'];
   public format:string = this.formats[0];
