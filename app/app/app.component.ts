@@ -32,6 +32,6 @@ import {MonitoringAnalysis} from '../monitoring/monitoring.component';
 export class AppComponent {
 
   constructor(@Inject(Router) public router:Router) {
-
+    
   }
 }

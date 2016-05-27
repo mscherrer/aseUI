@@ -1,6 +1,17 @@
-import {Component, Input, ViewChild} from 'angular2/core';
+import {Component, Input, ViewChild, provide} from 'angular2/core';
 import {SentimentAnalysis} from './sentiment-analysis.component';
 import {DatePickerComponent} from "./date-picker.component";
+import {Service} from './services/service';
+import {
+  Http,
+  BaseRequestOptions,
+  ConnectionBackend,
+  XHRBackend,
+  BrowserXhr,
+  ResponseOptions,
+  BaseResponseOptions
+} from 'angular2/http';
+
 
 @Component({
 	selector: 'my-sentiment-analysis-detail',
@@ -12,7 +23,7 @@ import {DatePickerComponent} from "./date-picker.component";
 		<br>
 		<br>
 		<span *ngIf="analysis.sentiment !== -1">
-		  <p>Sentiment value of {{analysis.term}}:<b> {{analysis.sentiment}}</b>
+		  <p>Sentiment value:<b> {{analysis.sentiment}}</b>
 		  <br>From: {{analysis.fromDateSentiment | date:'fullDate'}}
 		  <br>To: {{analysis.toDateSentiment | date:'fullDate'}}</p>
 		  <br>
@@ -22,22 +33,43 @@ import {DatePickerComponent} from "./date-picker.component";
 		
 		</div>
 		`,
-  directives: [DatePickerComponent]
+  directives: [DatePickerComponent],
+  providers: [Service,
+    BaseRequestOptions,
+    BrowserXhr,
+    XHRBackend,
+    Http,
+    provide(
+      ResponseOptions, {useClass: BaseResponseOptions}
+    ),
+    provide(
+      Http,
+      {
+        useFactory: function (backend:ConnectionBackend, defaultOptions:BaseRequestOptions) {
+          return new Http(backend, defaultOptions);
+        },
+        deps: [XHRBackend, BaseRequestOptions]
+      }),
+  ]
 })
 export class SentimentAnalysisDetailComponent {
-	@Input()	analysis: SentimentAnalysis;
-
+	@Input()analysis:any;
   @ViewChild('DatePickerComponent') child;
+  sentiment:number;
 
-	runSentimentAnalysis() {
-		if(this.child.pickerFromDate && this.child.pickerToDate) {
-			setTimeout( () => {
-        this.analysis.fromDateSentiment = this.child.pickerFromDate;
-        this.analysis.toDateSentiment = this.child.pickerToDate;
-        this.analysis.sentiment = Math.random();
-        this.child.clear();
-        this.child.clearVisible();
-      }, 100);
+  constructor(public service:Service) {}
+
+  runSentimentAnalysis() {
+    if(this.child.pickerFromDate && this.child.pickerToDate) {
+      this.service.getSentimentValue(this.child.pickerFromDate, this.child.pickerToDate, this.analysis.term).subscribe(
+        response => {
+          this.analysis.sentiment = response;
+          this.analysis.fromDateSentiment = this.child.pickerFromDate;
+          this.analysis.toDateSentiment = this.child.pickerToDate;
+          this.child.clear();
+          this.child.clearVisible();
+        }
+      );
     }
-	}
+  }
 }
