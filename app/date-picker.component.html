@@ -12,12 +12,12 @@
 </style>
 
 <div>
-  <pre (click)="fromClicked()" class="card card-block card-header">From (click here to set a new Date): <em *ngIf="pickerFromDate">{{ pickerFromDate | date:'fullDate'}}</em></pre>
+  <pre (click)="fromClicked()" style="width: 32em;" class="card card-block card-header">From (click here to set a new Date):<br><em *ngIf="pickerFromDate">{{ pickerFromDate | date:'fullDate'}}</em></pre>
   <div *ngIf="fromDateVisible" style="display:inline-block; min-height:290px;">
     <datepicker [(ngModel)]="pickerFromDate" [initDate]="pickerYesterdayDate" [showWeeks]="true"></datepicker>
   </div>
 
-  <pre (click)="toClicked();" class="card card-block card-header">To (click here to set a new Date): <em *ngIf="pickerToDate">{{ pickerToDate | date:'fullDate'}}</em></pre>
+  <pre (click)="toClicked();" style="width: 32em;" class="card card-block card-header">To (click here to set a new Date):<br><em *ngIf="pickerToDate">{{ pickerToDate | date:'fullDate'}}</em></pre>
   <div *ngIf="toDateVisible" style="display:inline-block; min-height:290px;">
     <datepicker [(ngModel)]="pickerToDate" [initDate]="pickerTodayDate" [showWeeks]="true"></datepicker>
   </div>
