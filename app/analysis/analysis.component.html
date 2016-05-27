@@ -2,18 +2,18 @@
 <h5>- Register a new term and run the sentiment analysis<br/> &nbsp;&nbsp;or<br/>- Click to select an already registered
   one</h5>
 <input #newTerm placeholder="Enter a new Term" (keyup.enter)="registerTerm(newTerm.value)" (focus)="newTerm.value=''"
-       style="width:18em;"/>
+       style="width:36em;"/>
 <button type="button" (click)="registerTerm(newTerm.value)" style="width:11.4em;">Register a new term</button>
-<hr align="left" style="width:29.5em"/>
+<hr align="left" style="width:36em"/>
 <h4><b>List of registered terms:</b></h4>
-<ul class="heroes" style="height:20em;overflow:hidden;overflow-y:auto;">
+<ul class="heroes" style="height:auto;overflow:hidden;overflow-y:auto;">
   <li *ngFor="#sentimentAnalysis of registeredTerms"
       [class.selected]="sentimentAnalysis === selectedSentimentAnalysis"
       (click)="onSelect(sentimentAnalysis)">
     <span class="badge"></span> {{sentimentAnalysis.term}}
   </li>
 </ul>
-<hr align="left" style="width:29.5em"/>
+<hr align="left" style="width:36em"/>
 
 
 <my-sentiment-analysis-detail [analysis]="selectedSentimentAnalysis"></my-sentiment-analysis-detail>
