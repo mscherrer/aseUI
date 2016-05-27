@@ -12,9 +12,10 @@ import {DatePickerComponent} from "./date-picker.component";
 		<br>
 		<br>
 		<span *ngIf="analysis.sentiment !== -1">
-		  <p>Sentiment value of {{analysis.term}} from last execution:
-		    <b>{{analysis.sentiment}}</b><br>From: <i>{{analysis.fromDateSentiment | date:'fullDate'}}</i><br>To: <i>{{analysis.toDateSentiment | date:'fullDate'}}</i>
-      </p>
+		  <p>Sentiment value of {{analysis.term}}:<b> {{analysis.sentiment}}</b>
+		  <br>From: {{analysis.fromDateSentiment | date:'fullDate'}}
+		  <br>To: {{analysis.toDateSentiment | date:'fullDate'}}</p>
+		  <br>
     </span>
 		
 		<date-picker-demo #DatePickerComponent></date-picker-demo>
@@ -34,8 +35,8 @@ export class SentimentAnalysisDetailComponent {
         this.analysis.fromDateSentiment = this.child.pickerFromDate;
         this.analysis.toDateSentiment = this.child.pickerToDate;
         this.analysis.sentiment = Math.random();
-        this.child.hideDatePickers();
-        //this.child.resetFromToDates();
+        this.child.clear();
+        this.child.clearVisible();
       }, 100);
     }
 	}

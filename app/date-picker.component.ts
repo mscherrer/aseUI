@@ -10,8 +10,10 @@ import {DATEPICKER_DIRECTIVES} from 'ng2-bootstrap/ng2-bootstrap';
 })
 
 export class DatePickerComponent {
-  public pickerFromDate:Date = new Date();
+  public pickerFromDate:Date = new Date(new Date().setDate(new Date().getDate()-1));
   public pickerToDate:Date = new Date();
+  public pickerYesterdayDate:Date = new Date(new Date().setDate(new Date().getDate()-1));
+  public pickerTodayDate:Date = new Date();
   public fromDateVisible:boolean = false;
   public toDateVisible:boolean = false;
   public events:Array<any>;
@@ -23,7 +25,6 @@ export class DatePickerComponent {
   };
 
   public constructor() {
-    this.pickerFromDate.setDate(this.pickerFromDate.getDate() - 1);
   }
 
   // todo: implement custom class cases
@@ -43,14 +44,22 @@ export class DatePickerComponent {
     return '';
   }
 
-  public hideDatePickers():void {
-    this.fromDateVisible = false;
-    this.toDateVisible = false;
+  fromClicked(event) {
+    this.fromDateVisible = !this.fromDateVisible;
   }
 
-  public resetFromToDates():void {
-    this.pickerToDate.setDate((new Date()).getDate());
-    this.pickerFromDate.setDate(this.pickerToDate.getDate() - 1);
+  toClicked(event) {
+    this.toDateVisible = !this.toDateVisible;
+  }
+
+  public clear():void {
+    this.pickerFromDate = void 0;
+    this.pickerToDate = void 0;
+  }
+
+  public clearVisible():void {
+    this.fromDateVisible = false;
+    this.toDateVisible = false;
   }
 
   public disabled(date:Date, mode:string):boolean {

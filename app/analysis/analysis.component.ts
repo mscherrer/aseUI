@@ -1,10 +1,8 @@
-import {Component, ViewChild} from 'angular2/core';
+import {Component} from 'angular2/core';
 import {SentimentAnalysis} from '../sentiment-analysis.component';
 import {SentimentAnalysisService} from '../sentiment-analysis.service';
 import {OnInit} from 'angular2/core';
 import {SentimentAnalysisDetailComponent} from '../sentiment-analysis-detail.component';
-import {DatePickerComponent} from '../date-picker.component';
-
 
 @Component({
   selector: 'analysis',
