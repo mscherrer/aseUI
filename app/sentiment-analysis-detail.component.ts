@@ -61,15 +61,20 @@ export class SentimentAnalysisDetailComponent {
 
   runSentimentAnalysis() {
     if(this.child.pickerFromDate && this.child.pickerToDate) {
-      this.service.getSentimentValue(this.child.pickerFromDate, this.child.pickerToDate, this.analysis.term).subscribe(
-        response => {
-          this.analysis.sentiment = response;
-          this.analysis.fromDateSentiment = this.child.pickerFromDate;
-          this.analysis.toDateSentiment = this.child.pickerToDate;
-          this.child.clear();
-          this.child.clearVisible();
-        }
-      );
+      var tempFrom = (new Date(this.child.pickerFromDate.getFullYear(), this.child.pickerFromDate.getMonth(), this.child.pickerFromDate.getDay())).setHours(0,0,0,0);
+      var tempTo = (new Date(this.child.pickerToDate.getFullYear(), this.child.pickerToDate.getMonth(), this.child.pickerToDate.getDay())).setHours(0,0,0,0);
+
+      if(!(tempFrom > tempTo || tempFrom == tempTo)) {
+        this.service.getSentimentValue(this.child.pickerFromDate, this.child.pickerToDate, this.analysis.term).subscribe(
+          response => {
+            this.analysis.sentiment = response;
+            this.analysis.fromDateSentiment = this.child.pickerFromDate;
+            this.analysis.toDateSentiment = this.child.pickerToDate;
+            this.child.clear();
+            this.child.clearVisible();
+          }
+        );
+      }
     }
   }
 }
